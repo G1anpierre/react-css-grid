@@ -10,23 +10,38 @@ import tree from './image/tree.jpg'
 
 function App() {
   const [open, setOpen] = useState(false)
+  const [state, setState] = useState(false)
 
   const handleOpen = () => {
     setOpen(!open)
+    setState(false)
   }
 
   const handleClickOutside = () => {
     setOpen(false)
+    setState(false)
+  }
+
+  const handleTransitionEnd = (event: any) => {
+    if (open) {
+      setState(true)
+    }
   }
 
   const wrapperRef = useRef(null)
 
   const stateModal = open ? 'reveal' : ''
+  const stateTransition = state ? 'transition' : ''
 
   useOnClickOutside(wrapperRef, handleClickOutside)
 
+  console.log('state :', state)
+
   return (
-    <div className={`App ${stateModal}`}>
+    <div
+      className={`App ${stateModal} ${stateTransition}`}
+      onTransitionEnd={handleTransitionEnd}
+    >
       <header className="masthead">
         <h1 className="site-title">Slide-over off-canvas navigation</h1>
       </header>
