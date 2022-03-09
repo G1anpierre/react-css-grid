@@ -35,8 +35,6 @@ function App() {
 
   useOnClickOutside(wrapperRef, handleClickOutside)
 
-  console.log('state :', state)
-
   return (
     <div
       className={`App ${stateModal} ${stateTransition}`}
